@@ -11,7 +11,7 @@ ReactDOM.render(
             <GlobalStyle />
             <Header />
             <Switch>
-                <Route exact path="/">
+                <Route exact path="/:userId">
                     <Home />
                 </Route>
             </Switch>

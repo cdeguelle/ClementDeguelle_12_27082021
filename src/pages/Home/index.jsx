@@ -4,9 +4,12 @@ import verticalNavBarIcon1 from "../../assets/verticalnavbaricon1.png"
 import verticalNavBarIcon2 from "../../assets/verticalnavbaricon2.png"
 import verticalNavBarIcon3 from "../../assets/verticalnavbaricon3.png"
 import verticalNavBarIcon4 from "../../assets/verticalnavbaricon4.png"
+import { Loader } from "../../utils/style/Atoms"
+import { useFetch } from "../../utils/hooks"
+import { useParams } from "react-router-dom"
 
 const HomeContainer = styled.div`
-
+	display: flex;
 `
 
 const VerticalNavBar = styled.div`
@@ -31,7 +34,30 @@ const VerticalNavIcon = styled.button`
 	cursor: pointer;
 `
 
+const DashBoard = styled.div `
+	padding: 70px 110px;
+`
+
+const DashboardTitle = styled.h1`
+	font-size: 2.5em;
+`
+
+const DashboardCongrats = styled.p`
+
+`
+
 function Home() {
+	const { userId } = useParams()
+	const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}`)
+	const dashboardData = data?.data
+
+	const redFont = {
+		color: colors.secondary
+	}
+
+	if (error) {
+		return <span>Oups, il y a eu un problème</span>
+	}
 	
     return (
 		<HomeContainer>
@@ -49,6 +75,14 @@ function Home() {
 					<img src={verticalNavBarIcon4} alt='alters' />
 				</VerticalNavIcon>
 			</VerticalNavBar>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<DashBoard>
+					<DashboardTitle>Bonjour <span style={redFont}>{dashboardData.userInfos.firstName}</span></DashboardTitle>
+					<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
+				</DashBoard>
+			)}
 		</HomeContainer>
 	)
 }

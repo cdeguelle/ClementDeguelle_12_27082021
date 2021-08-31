@@ -13,6 +13,7 @@ import { useFetch } from "../../utils/hooks"
 import { useParams } from "react-router-dom"
 import Activity from "../../components/Activity"
 import AverageTime from "../../components/AverageTime"
+import RadarGraph from "../../components/Radar"
 
 const HomeContainer = styled.div`
 	display: flex;
@@ -23,7 +24,7 @@ const VerticalNavBar = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	width: 120px;
+	width: 130px;
 	min-height: 90vh;
 	background-color: ${colors.primary};
 `
@@ -65,6 +66,10 @@ const DashBoard = styled.div `
 const DashboardGraphs = styled.div`
 	display: flex;
 	flex-direction: column;
+`
+
+const DashBoardSecondaryGraphs = styled.div`
+	display: flex;
 `
 
 const DashBoardCounts = styled.div`
@@ -144,7 +149,10 @@ function Home() {
 						<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
 						<DashboardGraphs>
 							<Activity />
-							<AverageTime />
+							<DashBoardSecondaryGraphs>
+								<AverageTime />
+								<RadarGraph />
+							</DashBoardSecondaryGraphs>
 						</DashboardGraphs>
 					</div>
 					

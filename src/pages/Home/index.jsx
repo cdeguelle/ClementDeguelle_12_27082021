@@ -12,6 +12,7 @@ import { Loader } from "../../utils/style/Atoms"
 import { useFetch } from "../../utils/hooks"
 import { useParams } from "react-router-dom"
 import Activity from "../../components/Activity"
+import AverageTime from "../../components/AverageTime"
 
 const HomeContainer = styled.div`
 	display: flex;
@@ -143,6 +144,7 @@ function Home() {
 						<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
 						<DashboardGraphs>
 							<Activity />
+							<AverageTime />
 						</DashboardGraphs>
 					</div>
 					

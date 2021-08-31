@@ -46,7 +46,7 @@ function Activity() {
                 >
                     <CartesianGrid vertical={false} strokeDasharray="3 3" />
                     <Legend align='right' verticalAlign='top' height='50px' />
-                    <XAxis axisLine={false} tickLine={false} />
+                    <XAxis dataKey='day' axisLine={false} tickLine={false} />
                     <YAxis orientation='right' axisLine={false} tickLine={false} tickCount={3} />
                     <Tooltip labelStyle={{ display: 'none' }} contentStyle={tooltipStyle} itemStyle={tooltipStyle} />
                     <Bar name='Poids (kg)' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />

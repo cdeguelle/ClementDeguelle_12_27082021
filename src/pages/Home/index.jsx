@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom"
 import Activity from "../../components/Activity"
 import AverageTime from "../../components/AverageTime"
 import RadarGraph from "../../components/Radar"
+import Score from "../../components/Score"
 
 const HomeContainer = styled.div`
 	display: flex;
@@ -70,6 +71,8 @@ const DashboardGraphs = styled.div`
 
 const DashBoardSecondaryGraphs = styled.div`
 	display: flex;
+	justify-content: space-between;
+	margin-top: 100px;
 `
 
 const DashBoardCounts = styled.div`
@@ -152,6 +155,7 @@ function Home() {
 							<DashBoardSecondaryGraphs>
 								<AverageTime />
 								<RadarGraph />
+								<Score />
 							</DashBoardSecondaryGraphs>
 						</DashboardGraphs>
 					</div>

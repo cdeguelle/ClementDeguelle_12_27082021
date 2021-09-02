@@ -11,7 +11,26 @@ const RadarContainer = styled.div``
 function RadarGraph() {
     const { userId } = useParams()
     const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
-    const RadarData = data?.data
+    if (!data?.data) return <div></div>
+    const radarData = data?.data
+    const dataGraph = radarData.data
+    const dataKind = radarData.kind
+    let dataKeys = []
+
+    for (var key in dataKind) {
+        if (dataKind.hasOwnProperty(key)) {
+            dataKeys.push(dataKind[key])
+        }
+    }  
+
+    for (let index = 0; index < dataGraph.length; index++) {
+        dataGraph[index] = {...dataGraph[index], name: dataKeys[dataGraph[index].kind-1]}
+        /* dataGraph.map((obj) => (
+            Object.assign(obj, {name: dataKeys[index]})
+        )) */
+    }
+
+    console.log(dataGraph)
 
     if (error) {
 		return <span>Oups, il y a eu un problème</span>
@@ -23,13 +42,13 @@ function RadarGraph() {
                 <Loader />
             ) : (
                 <RadarChart 
-                    data={RadarData.data} 
+                    data={dataGraph} 
                     width={258} 
                     height={263}
                     style={{ backgroundColor: '#282D30', borderRadius: '5px', marginLeft: '25px' }}
                 >
                     <PolarGrid />
-                    <PolarAngleAxis dataKey='kind' />
+                    <PolarAngleAxis dataKey='name' tick={{ fill: 'white' }} />
                     <PolarRadiusAxis angle={30} domain={[0, 250]} tick={false} />
                     <Radar dataKey="value" stroke={colors.secondary} fill={colors.secondary} fillOpacity={0.6} />
                 </RadarChart>

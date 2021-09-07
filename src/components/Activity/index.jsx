@@ -31,6 +31,18 @@ function Activity() {
         color: 'white'
     }
 
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="custom-tooltip" style={{ backgroundColor: colors.secondary, color: 'white', textAlign: 'center', padding: '10px' }}>
+                    <p className="label" style={{ marginBottom: '30px' }}>{payload[0].value}kg</p>
+                    <p className="label">{payload[1].value}kCal</p>
+                </div>
+            )
+        }
+        return null
+    }
+
     return (
         <ActivityGraph>
             {isLoading ? (
@@ -38,7 +50,7 @@ function Activity() {
             ) : (
                 <div>
                     <BarChart
-                        width={835}
+                        width={935}
                         height={420}
                         data={activityData.sessions}
                         barSize={7}
@@ -49,13 +61,13 @@ function Activity() {
                             left: 0,
                             bottom: 5
                         }}
-                        style={{ backgroundColor: '#FBFBFB', borderRadius: '5px', padding: '10px' }}
+                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px', padding: '10px' }}
                     >
                         <CartesianGrid vertical={false} strokeDasharray="3 3" />
                         <Legend align='right' verticalAlign='top' height='50px' />
                         <XAxis dataKey='day' axisLine={false} tickLine={false} />
                         <YAxis orientation='right' axisLine={false} tickLine={false} tickCount={3} />
-                        <Tooltip labelStyle={{ display: 'none' }} contentStyle={tooltipStyle} itemStyle={tooltipStyle} content={() => 'test'} />
+                        <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} />
                         <Bar name='Poids (kg)' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
                         <Bar name='Calories brûlées (kCal)' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
                     </BarChart>

@@ -25,9 +25,6 @@ function RadarGraph() {
 
     for (let index = 0; index < dataGraph.length; index++) {
         dataGraph[index] = {...dataGraph[index], name: dataKeys[dataGraph[index].kind-1]}
-        /* dataGraph.map((obj) => (
-            Object.assign(obj, {name: dataKeys[index]})
-        )) */
     }
 
     console.log(dataGraph)
@@ -43,14 +40,17 @@ function RadarGraph() {
             ) : (
                 <RadarChart 
                     data={dataGraph} 
-                    width={258} 
+                    width={308} 
                     height={263}
-                    style={{ backgroundColor: '#282D30', borderRadius: '5px', marginLeft: '25px' }}
+                    style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
+                    outerRadius={'70%'}
+                    startAngle={30}
+                    endAngle={-330}
                 >
                     <PolarGrid />
-                    <PolarAngleAxis dataKey='name' tick={{ fill: 'white' }} />
-                    <PolarRadiusAxis angle={30} domain={[0, 250]} tick={false} />
-                    <Radar dataKey="value" stroke={colors.secondary} fill={colors.secondary} fillOpacity={0.6} />
+                    <PolarAngleAxis dataKey='name' tick={{ fill: 'white' }} tickSize={18}  />
+                    <PolarRadiusAxis angle={90} domain={[0, 250]} tick={false} stroke={'#282D30'} />
+                    <Radar dataKey="value" stroke={colors.secondary} fill={colors.secondary} fillOpacity={0.6}  />
                 </RadarChart>
             )}
         </RadarContainer>

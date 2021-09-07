@@ -18,8 +18,8 @@ const TitleScoreGraph = styled.h3`
 
 const ContentScoreGraph = styled.div`
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 40%;
+    left: 40%;
     text-align: center;
     font-size: 1em;
     color: #74798C;
@@ -52,7 +52,7 @@ function Score() {
         }
     ]
 
-    const colorFill = [colors.secondary, '#FBFBFB']
+    const colorFill = [colors.secondary, colors.backgroundLight]
 
     return (
         <ScoreGraph>
@@ -61,9 +61,9 @@ function Score() {
             ) : (
                 <div>
                     <PieChart 
-                        width={258} 
+                        width={308} 
                         height={263}
-                        style={{ backgroundColor: '#FBFBFB', borderRadius: '5px', marginLeft: '25px' }}
+                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px' }}
                     >
                         <Pie 
                             data={PieData} 
@@ -78,7 +78,7 @@ function Score() {
                             fill={colors.secondary} 
                         >
                             {PieData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} />
+                                <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} stroke={colors.backgroundLight} />
                             ))}
                         </Pie>
                     </PieChart>

@@ -11,6 +11,7 @@ import Lipides from "../../assets/Lipides.png"
 import { Loader } from "../../utils/style/Atoms"
 import { useFetch } from "../../utils/hooks"
 import { useParams } from "react-router-dom"
+import Counter from "../../components/Counter"
 import Activity from "../../components/Activity"
 import AverageTime from "../../components/AverageTime"
 import RadarGraph from "../../components/Radar"
@@ -51,22 +52,23 @@ const Copyright = styled.p`
 
 const DashboardTitle = styled.h1`
 	font-size: 2.5em;
+	margin-bottom: 0;
 `
 
 const DashboardCongrats = styled.p`
-
+	margin-bottom: 70px;
 `
 
 const DashBoard = styled.div `
-	padding: 30px 70px;
 	display: flex;
 	width: 100%;
-	justify-content: space-between;
+	justify-content: space-around;
+	margin-bottom: 50px;
 `
 
 const DashboardGraphs = styled.div`
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
 `
 
 const DashBoardSecondaryGraphs = styled.div`
@@ -78,37 +80,8 @@ const DashBoardSecondaryGraphs = styled.div`
 const DashBoardCounts = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-top: 135px;
-`
-
-const NutritiveCount = styled.div`
-	display: flex;
-	background-color: #FBFBFB;
-	justify-content: center;
-	align-items: center;
-	padding: 30px;
-	margin-bottom: 30px;
-	font-weight: bold;
-	width: 250px;
-	height: 120px;
-	border-radius: 5px;
-`
-
-const LogoNutritiveCount = styled.img`
-	width: 60px;
-	height: 60px;
-	margin-right: 10px;
-`
-
-const Count = styled.div`
-	display: flex;
-	flex-direction: column;
-`
-
-const UnitNutritiveCount = styled.span`
-	font-weight: normal;
-	color: #74798C;
-	font-size: 0.9em;
+	margin-left: 10vh;
+	justify-content: space-between;
 `
 
 function Home() {
@@ -147,49 +120,43 @@ function Home() {
 				<Loader />
 			) : (
 				<DashBoard>
-					<div>
+					<div style={{ display:'flex', flexDirection:'column', justifyContent: 'space-around' }}>
 						<DashboardTitle>Bonjour <span style={redFont}>{dashboardData.userInfos.firstName}</span></DashboardTitle>
 						<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
 						<DashboardGraphs>
-							<Activity />
-							<DashBoardSecondaryGraphs>
-								<AverageTime />
-								<RadarGraph />
-								<Score />
-							</DashBoardSecondaryGraphs>
+							<div>
+								<Activity />
+								<DashBoardSecondaryGraphs>
+									<AverageTime />
+									<RadarGraph />
+									<Score />
+								</DashBoardSecondaryGraphs>
+							</div>
+							
+							<DashBoardCounts>
+								<Counter
+									picture={Calories}
+									count={dashboardData.keyData.calorieCount + 'kCal'}
+									unit={'Calories'}
+								/>
+								<Counter
+									picture={Proteines}
+									count={dashboardData.keyData.proteinCount + 'g'}
+									unit={'Proteines'}
+								/>
+								<Counter
+									picture={Glucides}
+									count={dashboardData.keyData.carbohydrateCount + 'g'}
+									unit={'Glucides'}
+								/>
+								<Counter
+									picture={Lipides}
+									count={dashboardData.keyData.lipidCount + 'g'}
+									unit={'Lipides'}
+								/>
+							</DashBoardCounts>
 						</DashboardGraphs>
 					</div>
-					
-					<DashBoardCounts>
-						<NutritiveCount>
-							<LogoNutritiveCount src={Calories} alt='burn' />
-							<Count>
-								{dashboardData.keyData.calorieCount}kCal
-								<UnitNutritiveCount>Calories</UnitNutritiveCount>
-							</Count>
-						</NutritiveCount>
-						<NutritiveCount>
-							<LogoNutritiveCount src={Proteines} alt='chicken wing' />
-							<Count>
-								{dashboardData.keyData.proteinCount}g
-								<UnitNutritiveCount>Proteines</UnitNutritiveCount>
-							</Count>
-						</NutritiveCount>
-						<NutritiveCount>
-							<LogoNutritiveCount src={Glucides} alt='apple' />
-							<Count>
-								{dashboardData.keyData.carbohydrateCount}g
-								<UnitNutritiveCount>Glucides</UnitNutritiveCount>
-							</Count>
-						</NutritiveCount>
-						<NutritiveCount>
-							<LogoNutritiveCount src={Lipides} alt='cheese burger' />
-							<Count>
-								{dashboardData.keyData.lipidCount}g
-								<UnitNutritiveCount>Lipides</UnitNutritiveCount>
-							</Count>
-						</NutritiveCount>
-					</DashBoardCounts>
 				</DashBoard>
 			)}
 		</HomeContainer>

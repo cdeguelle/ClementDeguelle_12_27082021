@@ -19,9 +19,15 @@ function AverageTime() {
 		return <span>Oups, il y a eu un problème</span>
 	}
 
-    const tooltipStyle = {
-        backgroundColor: 'white',
-        color: 'black'
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="custom-tooltip" style={{ backgroundColor: 'white', color: 'black', textAlign: 'center' }}>
+                    <p className="label" style={{ padding: '5px' }} >{payload[0].value} min</p>
+                </div>
+            )
+        }
+        return null
     }
 
     return (
@@ -30,7 +36,7 @@ function AverageTime() {
                 <Loader />
             ) : (
                 <LineChart
-                    width={258}
+                    width={308}
                     height={263}
                     data={averageData.sessions}
                     margin={{
@@ -41,7 +47,7 @@ function AverageTime() {
                     }}
                     style={{ backgroundColor: '#FF0000', borderRadius: '5px' }}
                 >
-                    <Tooltip labelStyle={{ display: 'none' }} contentStyle={tooltipStyle} itemStyle={tooltipStyle} cursor={{ stroke: 'white' }} allowEscapeViewBox={{ x: true }} />
+                    <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'white' }} />
                     <XAxis dataKey='day' axisLine={false} tickLine={false} padding={{ left: 10, right: 10 }} tick={{ fill: 'white', opacity: 0.7 }} />
                     <Line type='monotone' dataKey='sessionLength' stroke='white' unit='min' strokeWidth={2}  />
                 </LineChart>

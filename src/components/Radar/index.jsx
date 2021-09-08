@@ -10,7 +10,7 @@ const RadarContainer = styled.div``
 
 function RadarGraph() {
     const { userId } = useParams()
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
+    const { data, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
     if (!data?.data) return <Loader />
     const radarData = data?.data
     const dataGraph = radarData.data
@@ -39,12 +39,13 @@ function RadarGraph() {
                     height={263}
                     style={{ backgroundColor: '#282D30', borderRadius: '5px' }}
                     outerRadius={'70%'}
+                    innerRadius={'10%'}
                     startAngle={30}
                     endAngle={-330}
                 >
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey='name' tick={{ fill: 'white' }} tickSize={18}  />
-                    <PolarRadiusAxis angle={90} domain={[0, 250]} tick={false} stroke={'#282D30'} />
+                    <PolarGrid radialLines={false} />
+                    <PolarAngleAxis dataKey='name' tick={{ fill: 'white' }} tickSize={18} />
+                    <PolarRadiusAxis angle={90} domain={[0, 250]} tick={false} ticks={[5, 75, 125, 200, 250]} axisLine={false} />
                     <Radar dataKey="value" stroke={colors.secondary} fill={colors.secondary} fillOpacity={0.6}  />
                 </RadarChart>
         </RadarContainer>

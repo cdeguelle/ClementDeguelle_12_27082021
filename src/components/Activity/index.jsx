@@ -13,7 +13,7 @@ const ActivityGraph = styled.div`
 const TitleActivityGraph = styled.h3`
     position: absolute;
     top: 15px;
-    left: 15px;
+    left: 40px;
 `
 
 
@@ -21,6 +21,7 @@ function Activity() {
     const { userId } = useParams()
     const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/activity`)
     const activityData = data?.data
+    if (!data?.data) return <Loader />
 
     if (error) {
 		return <span>Oups, il y a eu un problème</span>
@@ -29,6 +30,14 @@ function Activity() {
     const tooltipStyle = {
         backgroundColor: colors.secondary,
         color: 'white'
+    }
+
+    const renderColorfulLegendText = (value) => {
+        return <span style={{ color: '#74798C' }}>{value}</span>
+    }
+
+    for (let index = 0; index < activityData.sessions.length; index++) {
+        activityData.sessions[index].day = index + 1       
     }
 
     const CustomTooltip = ({ active, payload }) => {
@@ -61,15 +70,16 @@ function Activity() {
                             left: 0,
                             bottom: 5
                         }}
-                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px', padding: '10px' }}
+                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px', padding: '40px' }}
                     >
                         <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                        <Legend align='right' verticalAlign='top' height='50px' />
-                        <XAxis dataKey='day' axisLine={false} tickLine={false} />
-                        <YAxis orientation='right' axisLine={false} tickLine={false} tickCount={3} />
+                        <Legend align='right' verticalAlign='top' height='50px' wrapperStyle={{ right: 40 }} formatter={renderColorfulLegendText} />
+                        <XAxis dataKey='day' axisLine={false} tickLine={false} scale='point' padding={{ left: 10, right: 10 }} />
+                        <YAxis dataKey='kilogram' yAxisId='right' orientation='right' axisLine={false} tickLine={false} tickCount={3} domain={[75, 'dataMax']} tickSize={40} />
+                        <YAxis dataKey='calories' yAxisId='left' orientation='left' tickCount={3} hide={true} />
                         <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} />
-                        <Bar name='Poids (kg)' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
-                        <Bar name='Calories brûlées (kCal)' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
+                        <Bar name='Poids (kg)' yAxisId='right' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
+                        <Bar name='Calories brûlées (kCal)' yAxisId='left' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
                     </BarChart>
                     <TitleActivityGraph>Activité quotidienne</TitleActivityGraph>
                 </div>

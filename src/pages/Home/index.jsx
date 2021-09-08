@@ -63,7 +63,7 @@ const DashBoard = styled.div `
 	display: flex;
 	width: 100%;
 	justify-content: space-around;
-	margin-bottom: 50px;
+	margin: 50px 30px;
 `
 
 const DashboardGraphs = styled.div`

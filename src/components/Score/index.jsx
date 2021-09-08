@@ -33,8 +33,8 @@ const ScorePercent = styled.strong`
 
 function Score() {
     const { userId } = useParams()
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}`)
-    if (!data?.data) return <div></div>
+    const { data, error } = useFetch(`http://localhost:3000/user/${userId}`)
+    if (!data?.data) return <Loader />
     const scoreData = data?.data.todayScore
 
     if (error) {
@@ -56,39 +56,35 @@ function Score() {
 
     return (
         <ScoreGraph>
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <div>
-                    <PieChart 
-                        width={308} 
-                        height={263}
-                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px' }}
+            <div>
+                <PieChart 
+                    width={308} 
+                    height={263}
+                    style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px' }}
+                >
+                    <Pie 
+                        data={PieData} 
+                        dataKey="value" 
+                        nameKey="name" 
+                        cx="50%" 
+                        cy="50%" 
+                        innerRadius={70} 
+                        outerRadius={80} 
+                        paddingAngle={5}
+                        startAngle={90}
+                        fill={colors.secondary} 
                     >
-                        <Pie 
-                            data={PieData} 
-                            dataKey="value" 
-                            nameKey="name" 
-                            cx="50%" 
-                            cy="50%" 
-                            innerRadius={70} 
-                            outerRadius={80} 
-                            paddingAngle={5}
-                            startAngle={90}
-                            fill={colors.secondary} 
-                        >
-                            {PieData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} stroke={colors.backgroundLight} />
-                            ))}
-                        </Pie>
-                    </PieChart>
-                    <TitleScoreGraph>Score</TitleScoreGraph>
-                    <ContentScoreGraph>
-                        <ScorePercent>{scoreData*100}%</ScorePercent><br />
-                        de votre objectif
-                    </ContentScoreGraph>
-                </div>
-            )}
+                        {PieData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} stroke={colors.backgroundLight} />
+                        ))}
+                    </Pie>
+                </PieChart>
+                <TitleScoreGraph>Score</TitleScoreGraph>
+                <ContentScoreGraph>
+                    <ScorePercent>{scoreData*100}%</ScorePercent><br />
+                    de votre objectif
+                </ContentScoreGraph>
+            </div>
         </ScoreGraph>
     )
 }

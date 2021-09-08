@@ -11,7 +11,7 @@ const RadarContainer = styled.div``
 function RadarGraph() {
     const { userId } = useParams()
     const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
-    if (!data?.data) return <div></div>
+    if (!data?.data) return <Loader />
     const radarData = data?.data
     const dataGraph = radarData.data
     const dataKind = radarData.kind
@@ -27,17 +27,12 @@ function RadarGraph() {
         dataGraph[index] = {...dataGraph[index], name: dataKeys[dataGraph[index].kind-1]}
     }
 
-    console.log(dataGraph)
-
     if (error) {
 		return <span>Oups, il y a eu un problème</span>
 	}
 
     return (
         <RadarContainer>
-            {isLoading ? (
-                <Loader />
-            ) : (
                 <RadarChart 
                     data={dataGraph} 
                     width={308} 
@@ -52,7 +47,6 @@ function RadarGraph() {
                     <PolarRadiusAxis angle={90} domain={[0, 250]} tick={false} stroke={'#282D30'} />
                     <Radar dataKey="value" stroke={colors.secondary} fill={colors.secondary} fillOpacity={0.6}  />
                 </RadarChart>
-            )}
         </RadarContainer>
     )
 }

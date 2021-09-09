@@ -70,8 +70,7 @@ function Score() {
                         cy="50%" 
                         innerRadius={70} 
                         outerRadius={80} 
-                        paddingAngle={5}
-                        startAngle={90}
+                        startAngle={-270}
                         fill={colors.secondary} 
                     >
                         {PieData.map((entry, index) => (

@@ -42,8 +42,9 @@ function AverageTime() {
     }
 
     const CustomCursor = props => {
-        const { x, y, width, height } = props
-        return <Rectangle fill='black' stroke='black' x={x} y={y} width={width} height={height} />
+        const { y, width, height, points } = props
+        const xPos = points[0].x
+        return <Rectangle fill='black' stroke='black' x={xPos} y={y} width={width} height={height} opacity={0.1} />
     }
 
     return (
@@ -62,12 +63,12 @@ function AverageTime() {
                         left: 0,
                         bottom: 5
                     }}
-                    style={{ backgroundColor: '#FF0000', borderRadius: '5px', opacity: 0.7, position: 'relative' }}
+                    style={{ backgroundColor: '#FF0000', borderRadius: '5px', position: 'relative' }}
                     >
-                        <Tooltip content={<CustomTooltip />} cursor={<CustomCursor x={0} y={0} width={308} height={263} />} />
+                        <Tooltip content={<CustomTooltip />} cursor={<CustomCursor width={308} height={263} />} />
                         <YAxis hide={true} />
                         <XAxis dataKey='day' axisLine={false} tickLine={false} tick={{ fill: 'white', opacity: 0.7 }} padding={{ left: 10, right: 10 }} allowDataOverflow={true} />
-                        <Line type='natural' dataKey='sessionLength' stroke='white' unit='min' strokeWidth={2} dot={{ r: 0 }} activeDot={{ r: 3 }} />
+                        <Line type='natural' dataKey='sessionLength' stroke='white' unit='min' strokeWidth={2} dot={{ r: 0 }} activeDot={{ r: 3 }} height={250} />
                     </LineChart>
                 <TitleAverageGraph>Durée moyenne des sessions</TitleAverageGraph>
                 </div>

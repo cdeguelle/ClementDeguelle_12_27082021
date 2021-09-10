@@ -1,10 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
+import './style.css'
 
 const ActivityGraph = styled.div`
     position: relative;
@@ -57,30 +58,30 @@ function Activity() {
             {isLoading ? (
                 <Loader />
             ) : (
-                <div>
-                    <BarChart
-                        width={935}
-                        height={420}
-                        data={activityData.sessions}
-                        barSize={7}
-                        barCategoryGap={0}
-                        margin={{
-                            top: 30,
-                            right: 0,
-                            left: 0,
-                            bottom: 5
-                        }}
-                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px', padding: '40px' }}
-                    >
-                        <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                        <Legend align='right' verticalAlign='top' height='50px' wrapperStyle={{ right: 40 }} formatter={renderColorfulLegendText} />
-                        <XAxis dataKey='day' axisLine={false} tickLine={false} padding={{ left: -50, right: -50 }} />
-                        <YAxis dataKey='kilogram' yAxisId='right' orientation='right' axisLine={false} tickLine={false} tickCount={3} domain={['dataMin-1', 'dataMax']} tickSize={30} />
-                        <YAxis dataKey='calories' yAxisId='left' orientation='left' tickCount={3} hide={true} />
-                        <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} cursor={{ width: 120 }} />
-                        <Bar name='Poids (kg)' yAxisId='right' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
-                        <Bar name='Calories brûlées (kCal)' yAxisId='left' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
-                    </BarChart>
+                <div className='bar-chart' style={{ width: '92%', height: 420 }}>
+                    <ResponsiveContainer>
+                        <BarChart
+                            data={activityData.sessions}
+                            barSize={7}
+                            barCategoryGap={0}
+                            margin={{
+                                top: 30,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}
+                            style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px', padding: '40px' }}
+                        >
+                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                            <Legend align='right' verticalAlign='top' height='50px' wrapperStyle={{ right: 40 }} formatter={renderColorfulLegendText} />
+                            <XAxis dataKey='day' axisLine={false} tickLine={false} />
+                            <YAxis dataKey='kilogram' yAxisId='right' orientation='right' axisLine={false} tickLine={false} tickCount={3} domain={['dataMin-1', 'dataMax']} tickSize={30} />
+                            <YAxis dataKey='calories' yAxisId='left' orientation='left' tickCount={3} hide={true} />
+                            <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} cursor={{ width: 120 }} />
+                            <Bar name='Poids (kg)' yAxisId='right' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
+                            <Bar name='Calories brûlées (kCal)' yAxisId='left' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
+                        </BarChart>
+                    </ResponsiveContainer>
                     <TitleActivityGraph>Activité quotidienne</TitleActivityGraph>
                 </div>
             )}

@@ -1,0 +1,5 @@
+@media screen and (max-width: 1025px) {
+    .bar-chart {
+        width: 91% !important;
+    }
+}

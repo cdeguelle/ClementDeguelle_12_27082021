@@ -1,9 +1,10 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { LineChart, Line, Tooltip, XAxis, YAxis, Rectangle } from "recharts"
+import { LineChart, Line, Tooltip, XAxis, YAxis, Rectangle, ResponsiveContainer } from "recharts"
 import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
+import './style.css'
 
 const AverageGraph = styled.div`
     position: relative;
@@ -52,27 +53,26 @@ function AverageTime() {
             {isLoading ? (
                 <Loader />
             ) : (
-                <div>
-                    <LineChart
-                    width={308}
-                    height={263}
-                    data={averageData.sessions}
-                    margin={{
-                        top: 30,
-                        right: 0,
-                        left: 0,
-                        bottom: 5
-                    }}
-                    style={{ backgroundColor: '#FF0000', borderRadius: '5px', position: 'relative' }}
-                    >
-                        <Tooltip content={<CustomTooltip />} cursor={<CustomCursor width={308} height={263} />} />
-                        <YAxis hide={true} />
-                        <XAxis dataKey='day' axisLine={false} tickLine={false} tick={{ fill: 'white', opacity: 0.7 }} padding={{ left: 10, right: 10 }} allowDataOverflow={true} />
-                        <Line type='natural' dataKey='sessionLength' stroke='white' unit='min' strokeWidth={2} dot={{ r: 0 }} activeDot={{ r: 3 }} height={250} />
-                    </LineChart>
-                <TitleAverageGraph>Durée moyenne des sessions</TitleAverageGraph>
+                <div className='line-chart' style={{ width: 308, height: 263 }}>
+                    <ResponsiveContainer>
+                        <LineChart
+                            data={averageData.sessions}
+                            margin={{
+                                top: 30,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}
+                            style={{ backgroundColor: '#FF0000', borderRadius: '5px', position: 'relative' }}
+                            >
+                                <Tooltip content={<CustomTooltip />} cursor={<CustomCursor width={308} height={263} />} />
+                                <YAxis hide={true} />
+                                <XAxis dataKey='day' axisLine={false} tickLine={false} tick={{ fill: 'white', opacity: 0.7 }} padding={{ left: 10, right: 10 }} allowDataOverflow={true} />
+                                <Line type='natural' dataKey='sessionLength' stroke='white' unit='min' strokeWidth={2} dot={{ r: 0 }} activeDot={{ r: 3 }} height={250} />
+                            </LineChart>
+                    </ResponsiveContainer>
+                    <TitleAverageGraph>Durée moyenne des sessions</TitleAverageGraph>
                 </div>
-                
             )}
         </AverageGraph>
         

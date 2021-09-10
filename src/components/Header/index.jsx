@@ -6,7 +6,7 @@ import colors from "../../utils/style/colors"
 const HeaderStyle = styled.div`
     display: flex;
     width: 100%;
-    height: 10vh;
+    height: 15vh;
     align-items: center;
     justify-content: center;
     background-color: ${colors.primary}; 

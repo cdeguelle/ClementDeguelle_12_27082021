@@ -1,0 +1,16 @@
+@media screen and (max-width: 1025px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .dashboard-graphs {
+        flex-direction: column;
+    }
+
+    .dashboard-counts {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+} 

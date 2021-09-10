@@ -16,6 +16,7 @@ import Activity from "../../components/Activity"
 import AverageTime from "../../components/AverageTime"
 import RadarGraph from "../../components/Radar"
 import Score from "../../components/Score"
+import './style.css'
 
 const HomeContainer = styled.div`
 	display: flex;
@@ -26,8 +27,8 @@ const VerticalNavBar = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	width: 130px;
-	min-height: 90vh;
+	width: 140px;
+	min-height: 85vh;
 	background-color: ${colors.primary};
 `
 
@@ -75,6 +76,7 @@ const DashBoardSecondaryGraphs = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin-top: 100px;
+	width: 100%;
 `
 
 const DashBoardCounts = styled.div`
@@ -119,11 +121,11 @@ function Home() {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<DashBoard>
+				<DashBoard className='dashboard'>
 					<div style={{ display:'flex', flexDirection:'column', justifyContent: 'space-around' }}>
 						<DashboardTitle>Bonjour <span style={redFont}>{dashboardData.userInfos.firstName}</span></DashboardTitle>
 						<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
-						<DashboardGraphs>
+						<DashboardGraphs className='dashboard-graphs'>
 							<div>
 								<Activity />
 								<DashBoardSecondaryGraphs>
@@ -133,7 +135,7 @@ function Home() {
 								</DashBoardSecondaryGraphs>
 							</div>
 							
-							<DashBoardCounts>
+							<DashBoardCounts className='dashboard-counts'>
 								<Counter
 									picture={Calories}
 									count={dashboardData.keyData.calorieCount + 'kCal'}

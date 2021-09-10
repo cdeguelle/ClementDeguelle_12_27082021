@@ -1,10 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { PieChart, Pie, Cell } from "recharts"
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
 import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
+import './style.css'
 
 const ScoreGraph = styled.div`
     position: relative;
@@ -56,28 +57,28 @@ function Score() {
 
     return (
         <ScoreGraph>
-            <div>
-                <PieChart 
-                    width={308} 
-                    height={263}
-                    style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px' }}
-                >
-                    <Pie 
-                        data={PieData} 
-                        dataKey="value" 
-                        nameKey="name" 
-                        cx="50%" 
-                        cy="50%" 
-                        innerRadius={70} 
-                        outerRadius={80} 
-                        startAngle={-270}
-                        fill={colors.secondary} 
+            <div className='score-chart' style={{ width: 308, height: 263 }}>
+                <ResponsiveContainer>
+                    <PieChart 
+                        style={{ backgroundColor: colors.backgroundLight, borderRadius: '5px' }}
                     >
-                        {PieData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} stroke={colors.backgroundLight} />
-                        ))}
-                    </Pie>
-                </PieChart>
+                        <Pie 
+                            data={PieData} 
+                            dataKey="value" 
+                            nameKey="name" 
+                            cx="50%" 
+                            cy="50%" 
+                            innerRadius={70} 
+                            outerRadius={80} 
+                            startAngle={-270}
+                            fill={colors.secondary} 
+                        >
+                            {PieData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={colorFill[index % colorFill.length]} stroke={colors.backgroundLight} />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
                 <TitleScoreGraph>Score</TitleScoreGraph>
                 <ContentScoreGraph>
                     <ScorePercent>{scoreData*100}%</ScorePercent><br />

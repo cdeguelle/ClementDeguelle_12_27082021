@@ -74,7 +74,7 @@ function Activity() {
                         >
                             <CartesianGrid vertical={false} strokeDasharray="3 3" />
                             <Legend align='right' verticalAlign='top' height='50px' wrapperStyle={{ right: 40 }} formatter={renderColorfulLegendText} />
-                            <XAxis dataKey='day' axisLine={false} tickLine={false} />
+                            <XAxis dataKey='day' axisLine={false} tickLine={false} padding={{ left: -50, right: -50 }} />
                             <YAxis dataKey='kilogram' yAxisId='right' orientation='right' axisLine={false} tickLine={false} tickCount={3} domain={['dataMin-1', 'dataMax']} tickSize={30} />
                             <YAxis dataKey='calories' yAxisId='left' orientation='left' tickCount={3} hide={true} />
                             <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} cursor={{ width: 120 }} />

@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+[![forthebadge](https://forthebadge.com/images/badges/cc-0.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sport See : the sport dashboard app
+
+Sportsee is an application that allows you to monitor your performance and physical activity on a daily basis and shows you where you are compared to your (previously defined) goal.
+
+## Technologies
+- JS
+- CSS 
+- React
+
+## Contribute to the project
+
+Sport See is an open source project. Feel free to fork the source and contribute with your own features.
+
+## Authors
+
+Myself : Clément
+
+## Licensing
+
+This project was built under the Creative Commons licence.
 
 ## Available Scripts
 

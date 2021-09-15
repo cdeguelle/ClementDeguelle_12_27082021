@@ -21,6 +21,12 @@ Myself : Clément
 
 This project was built under the Creative Commons licence.
 
+## Prerequisites
+
+- [NodeJS (**version 12.18**)](https://nodejs.org/en/)
+
+If you are working with several versions of NodeJS, we recommend you install [nvm](https://github.com/nvm-sh/nvm). This tool will allow you to easily manage your NodeJS versions.
+
 ## Installing the app 
 
 - Fork the repository

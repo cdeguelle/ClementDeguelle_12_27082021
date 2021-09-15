@@ -31,6 +31,12 @@ function AverageTime() {
 		return <span>Oups, il y a eu un problème</span>
 	}
 
+    /**
+     * Create a custom tooltip.
+     * @param {boolean} active 
+     * @param {object} payload 
+     * @returns JSX element.
+     */
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
@@ -42,6 +48,11 @@ function AverageTime() {
         return null
     }
 
+    /**
+     * Create a custom tooltip's cursor.
+     * @param {any} props 
+     * @returns JSX element.
+     */
     const CustomCursor = props => {
         const { y, width, height, points } = props
         const xPos = points[0].x

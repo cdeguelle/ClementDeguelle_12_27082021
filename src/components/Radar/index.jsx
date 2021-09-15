@@ -11,7 +11,14 @@ const RadarContainer = styled.div``
 function RadarGraph() {
     const { userId } = useParams()
     const { data, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
+    /**
+     * Waiting for data
+     */
     if (!data?.data) return <Loader />
+
+    /**
+     * Modify the data object for display each data's name on the graph.
+     */
     const radarData = data?.data
     const dataGraph = radarData.data
     const dataKind = radarData.kind

@@ -35,6 +35,9 @@ const ScorePercent = styled.strong`
 function Score() {
     const { userId } = useParams()
     const { data, error } = useFetch(`http://localhost:3000/user/${userId}`)
+    /**
+     * Waiting for data
+     */
     if (!data?.data) return <Loader />
     const scoreData = data?.data.todayScore
 

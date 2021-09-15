@@ -1,5 +1,7 @@
 import colors from "../../utils/style/colors"
 import styled from "styled-components"
+import PropTypes from "prop-types"
+import DefaultPicture from "../../assets/SportSeeLogo.png"
 import './style.css'
 
 const NutritiveCount = styled.div`
@@ -41,6 +43,18 @@ function Counter({ picture, count, unit }) {
             </Count>
         </NutritiveCount>
     )
+}
+
+Counter.propTypes = {
+    picture: PropTypes.string.isRequired,
+    count: PropTypes.number.isRequired,
+    unit: PropTypes.string.isRequired
+}
+
+Counter.defaultProps = {
+    picture: DefaultPicture,
+    count: 0,
+    unit: "No data",
 }
 
 export default Counter

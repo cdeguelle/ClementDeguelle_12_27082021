@@ -22,6 +22,9 @@ function Activity() {
     const { userId } = useParams()
     const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/activity`)
     const activityData = data?.data
+    /**
+     * Waiting for data.
+     */
     if (!data?.data) return <Loader />
 
     if (error) {
@@ -33,6 +36,11 @@ function Activity() {
         color: 'white'
     }
 
+    /**
+     * Create a custom color legend text.
+     * @param {string} value 
+     * @returns JSX element.
+     */
     const renderColorfulLegendText = (value) => {
         return <span style={{ color: '#74798C' }}>{value}</span>
     }
@@ -41,6 +49,12 @@ function Activity() {
         activityData.sessions[index].day = index + 1       
     }
 
+    /**
+     * Create a custom tolltip.
+     * @param {boolean} active 
+     * @param {object} payload 
+     * @returns JSX element.
+     */
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (

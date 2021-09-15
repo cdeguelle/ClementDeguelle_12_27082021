@@ -69,4 +69,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `/userId`
 
-If you run the script `npm start` you don't see the dahsboard. To see the dashboard you must have to indicate the userId (number) in the URL. For the moment we have only two users so the userIds that work are "12" and "18".
+If you run the script `npm start` you don't see the dahsboard. To see the dashboard you must have to indicate the userId (number) in the URL. 
+
+**Warning, currently only two users have been mocked. They have userId 12 and 18 respectively.**

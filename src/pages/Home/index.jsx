@@ -38,9 +38,9 @@ const VerticalNavIcon = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 20px;
 	width: 64px;
 	height: 64px;
+	margin: 20px 10px;
 	cursor: pointer;
 `
 
@@ -103,16 +103,16 @@ function Home() {
 		<HomeContainer>
 			<VerticalNavBar>
 				<div>
-					<VerticalNavIcon>
+					<VerticalNavIcon className='vertical-nav-icon'>
 						<img src={verticalNavBarIcon1} alt='meditation' />
 					</VerticalNavIcon>
-					<VerticalNavIcon>
+					<VerticalNavIcon className='vertical-nav-icon'>
 						<img src={verticalNavBarIcon2} alt='swimming' />
 					</VerticalNavIcon>
-					<VerticalNavIcon>
+					<VerticalNavIcon className='vertical-nav-icon'>
 						<img src={verticalNavBarIcon3} alt='bicycle' />
 					</VerticalNavIcon>
-					<VerticalNavIcon>
+					<VerticalNavIcon className='vertical-nav-icon'>
 						<img src={verticalNavBarIcon4} alt='alters' />
 					</VerticalNavIcon>
 				</div>

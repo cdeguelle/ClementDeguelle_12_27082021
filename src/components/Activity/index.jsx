@@ -91,7 +91,7 @@ function Activity() {
                             <XAxis dataKey='day' axisLine={false} tickLine={false} padding={{ left: -50, right: -50 }} />
                             <YAxis dataKey='kilogram' yAxisId='right' orientation='right' axisLine={false} tickLine={false} tickCount={3} domain={['dataMin-1', 'dataMax']} tickSize={30} />
                             <YAxis dataKey='calories' yAxisId='left' orientation='left' tickCount={3} hide={true} />
-                            <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} cursor={{ width: 120 }} />
+                            <Tooltip labelStyle={{ display: 'none' }} itemStyle={tooltipStyle} content={<CustomTooltip />} cursor={{ width: 120, opacity: 0.4 }} />
                             <Bar name='Poids (kg)' yAxisId='right' dataKey="kilogram" fill={colors.primary} legendType='circle' radius={20} unit='kg' />
                             <Bar name='Calories brûlées (kCal)' yAxisId='left' dataKey="calories" fill={colors.secondary} legendType='circle' radius={20} unit='kCal' />
                         </BarChart>

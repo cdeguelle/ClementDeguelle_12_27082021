@@ -1,5 +1,6 @@
 @media screen and (max-width: 1025px) {
     .nutritive-count {
         margin-top: 30px;
+        width: 350px !important;
     }
 }

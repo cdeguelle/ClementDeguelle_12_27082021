@@ -10,7 +10,7 @@ const RadarContainer = styled.div``
 
 function RadarGraph() {
     const { userId } = useParams()
-    const { data, error } = useFetch(`http://localhost:3000/user/${userId}/performance`)
+    const { data, error } = useFetch(`http://localhost:3000/user/${userId}/activities`)
     /**
      * Waiting for data
      */

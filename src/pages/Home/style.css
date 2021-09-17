@@ -1,6 +1,7 @@
 @media screen and (max-width: 1025px) {
     .dashboard {
         flex-direction: column;
+        margin: 50px 20px !important;
     }
 
     .dashboard-graphs {

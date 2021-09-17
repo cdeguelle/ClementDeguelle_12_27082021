@@ -24,12 +24,22 @@ This project was built under the Creative Commons licence.
 ## Prerequisites
 
 - [NodeJS (**version 12.18**)](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/)
 
 If you are working with several versions of NodeJS, we recommend you install [nvm](https://github.com/nvm-sh/nvm). This tool will allow you to easily manage your NodeJS versions.
 
 ## Installing the app 
 
-- Fork the repository
+### Run the backend
+
+- Fork the backend repository (https://github.com/cdeguelle/P9-front-end-dashboard.git).
+- Clone it on your computer.
+- The `yarn` command will allow you to install the dependencies.
+- The `yarn dev` command will allow you to run the backend API.
+
+### Run the app
+
+- Fork this repository.
 - Clone it on your computer.
 - The `npm install` command will allow you to install the dependencies.
 - The `npm start` command will allow you to run the app in the development mode.

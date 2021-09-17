@@ -38,7 +38,7 @@ const DashBoard = styled.div `
 
 const DashboardGraphs = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 `
 
 const DashBoardSecondaryGraphs = styled.div`
@@ -53,6 +53,7 @@ const DashBoardCounts = styled.div`
 	flex-direction: column;
 	margin-left: 10vh;
 	justify-content: space-between;
+	margin-top: 177px;
 `
 
 function Home() {
@@ -75,10 +76,10 @@ function Home() {
 				<Loader />
 			) : (
 				<DashBoard className='dashboard'>
-					<DashboardTitle>Bonjour <span style={redFont}>{dashboardData.userInfos.firstName}</span></DashboardTitle>
-					<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
 					<DashboardGraphs className='dashboard-graphs'>
 						<div>
+							<DashboardTitle>Bonjour <span style={redFont}>{dashboardData.userInfos.firstName}</span></DashboardTitle>
+							<DashboardCongrats>Félicitation ! Vous avez explosé vos objectifs hier 👏</DashboardCongrats>
 							<Activity />
 							<DashBoardSecondaryGraphs>
 								<AverageTime />

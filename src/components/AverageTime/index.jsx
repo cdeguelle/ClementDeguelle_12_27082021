@@ -1,10 +1,10 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { LineChart, Line, Tooltip, XAxis, YAxis, Rectangle, ResponsiveContainer } from "recharts"
-import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
 import './style.css'
+import { useAverageTimeAPI } from "../../utils/API"
 
 const AverageGraph = styled.div`
     position: relative;
@@ -24,7 +24,7 @@ const TitleAverageGraph = styled.h3`
 
 function AverageTime() {
     const { userId } = useParams()
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/average-sessions`)
+    const { data, isLoading, error } = useAverageTimeAPI(userId)
     const averageData = data?.data
 
     if (error) {

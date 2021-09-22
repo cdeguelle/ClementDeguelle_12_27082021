@@ -1,11 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
-import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import './style.css'
+import { useHomeAPI } from "../../utils/API"
 
 const ScoreGraph = styled.div`
     position: relative;
@@ -34,7 +34,7 @@ const ScorePercent = styled.strong`
 
 function Score() {
     const { userId } = useParams()
-    const { data, error } = useFetch(`http://localhost:3000/user/${userId}`)
+    const { data, error } = useHomeAPI(userId)
     /**
      * Waiting for data
      */

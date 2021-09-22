@@ -1,11 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import './style.css'
+import { useActivityAPI } from "../../utils/API"
 
 const ActivityGraph = styled.div`
     position: relative;
@@ -20,7 +20,7 @@ const TitleActivityGraph = styled.h3`
 
 function Activity() {
     const { userId } = useParams()
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/activity`)
+    const { data, isLoading, error } = useActivityAPI(userId)
     const activityData = data?.data
     /**
      * Waiting for data.

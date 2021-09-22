@@ -6,7 +6,7 @@ import Proteines from "../../assets/Proteines.png"
 import Glucides from "../../assets/Glucides.png"
 import Lipides from "../../assets/Lipides.png"
 import { Loader } from "../../utils/style/Atoms"
-import { useFetch } from "../../utils/hooks"
+import { useHomeAPI } from "../../utils/API"
 import { useParams } from "react-router-dom"
 import Counter from "../../components/Counter"
 import Activity from "../../components/Activity"
@@ -58,7 +58,7 @@ const DashBoardCounts = styled.div`
 
 function Home() {
 	const { userId } = useParams()
-	const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}`)
+	const { data, isLoading, error } = useHomeAPI(userId)
 	const dashboardData = data?.data
 
 	const redFont = {

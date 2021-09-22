@@ -1,16 +1,16 @@
 import React from 'react'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts'
 import { useParams } from "react-router-dom"
-import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/style/Atoms"
 import colors from "../../utils/style/colors"
 import styled from "styled-components"
+import { useActivitiesScoreAPI } from '../../utils/API'
 
 const RadarContainer = styled.div``
 
 function RadarGraph() {
     const { userId } = useParams()
-    const { data, error } = useFetch(`http://localhost:3000/user/${userId}/activities`)
+    const { data, error } = useActivitiesScoreAPI(userId)
     /**
      * Waiting for data
      */
